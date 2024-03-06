@@ -306,6 +306,16 @@ Config.Blips = {
         offset = false,
         flash = false
     },
+    ['OxyRuns'] = {
+        radius = 0,
+        sprite = 51,
+        color = 60,
+        scale = 1.5,
+        length = 2,
+        sound = 'robberysound',
+        offset = false,
+        flash = false
+    },
     ['signrobbery'] = {
         radius = 0,
         sprite = 358,

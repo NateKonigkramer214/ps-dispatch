@@ -1,0 +1,62 @@
+--Alerts . lua
+
+local function TestAlert()
+    local coords = GetEntityCoords(cache.ped)
+    local vehicle = GetVehicleData(cache.vehicle)
+
+    local dispatchData = {
+        message = locale('testalert'), -- add this into your locale
+        codeName = 'testalert', -- this should be the same as in config.lua
+        code = '10-35',
+        icon = 'fas fa-car-burst',
+        priority = 2,
+        coords = coords,
+        street = GetStreetAndZone(coords),
+        heading = GetPlayerHeading(),
+        vehicle = vehicle.name,
+        plate = vehicle.plate,
+        color = vehicle.color,
+        class = vehicle.class,
+        doors = vehicle.doors,
+        jobs = { 'leo' }
+    }
+    TriggerServerEvent('ps-dispatch:server:notify', dispatchData)
+end
+exports('TestAlert', TestAlert)
+
+--Config.lua 
+
+
+['testalert'] = { -- Need to match the codeName in alerts.lua
+radius = 0,
+sprite = 119,
+color = 1,
+scale = 1.5,
+length = 2,
+sound = 'Lose_1st',
+sound2 = 'GTAO_FM_Events_Soundset',
+offset = false,
+flash = false
+},
+
+--Eg
+
+local function DrugSale()
+    local coords = GetEntityCoords(cache.ped)
+
+    local dispatchData = {
+        message = locale('drugsell'),
+        codeName = 'suspicioushandoff',
+        code = '10-13',
+        icon = 'fas fa-tablets',
+        priority = 2,
+        coords = coords,
+        gender = GetPlayerGender(),
+        street = GetStreetAndZone(coords),
+        alertTime = nil,
+        jobs = { 'leo' }
+    }
+
+    TriggerServerEvent('ps-dispatch:server:notify', dispatchData)
+end
+exports('DrugSale', DrugSale)

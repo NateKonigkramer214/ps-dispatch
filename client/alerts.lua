@@ -42,6 +42,30 @@ local function CustomAlert(data)
 end
 exports('CustomAlert', CustomAlert)
 
+--Oxy runs
+local function OxyRuns()
+    local coords = GetEntityCoords(cache.ped)
+
+    local dispatchData = {
+        message = locale('oxyrun'),
+        codeName = 'oxyrun',
+        code = '10-13',
+        icon = 'fas fa-pills',
+        priority = 2,
+        coords = coords,
+        gender = GetPlayerGender(),
+        street = GetStreetAndZone(coords),
+        vehicle = vehicle.name,
+        plate = vehicle.plate,
+        color = vehicle.color,
+        class = vehicle.class,
+        doors = vehicle.doors,
+        jobs = { 'leo' }
+    }
+    TriggerServerEvent('ps-dispatch:server:notify', dispatchData)
+end
+exports('OxyRuns', OxyRuns)
+
 local function VehicleTheft()
     local coords = GetEntityCoords(cache.ped)
     local vehicle = GetVehicleData(cache.vehicle)
